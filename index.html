@@ -13,9 +13,14 @@
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1E2D3D 0%, #8B5FBF 50%, #D4578C 100%);
             min-height: 100vh;
             padding: 20px;
+            transition: background 0.3s ease;
+        }
+        
+        body.dark-mode {
+            background: linear-gradient(135deg, #0a0e14 0%, #1a1a2e 50%, #16213e 100%);
         }
         
         .container {
@@ -23,25 +28,58 @@
             margin: 0 auto;
         }
         
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(245, 240, 232, 0.95);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.2em;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            z-index: 2000;
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+        
+        body.dark-mode .theme-toggle {
+            background: rgba(30, 45, 61, 0.95);
+        }
+        
         header {
             text-align: center;
-            color: white;
+            color: #F5F0E8;
             margin-bottom: 30px;
+        }
+        
+        .logo {
+            width: 120px;
+            height: auto;
+            margin: 0 auto 20px;
+            display: block;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
         }
         
         header h1 {
             font-size: 2.5em;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
         
         .subtitle {
             font-size: 1.2em;
-            opacity: 0.9;
+            opacity: 0.95;
+            color: #F5F0E8;
         }
         
         .controls {
-            background: white;
+            background: #F5F0E8;
             padding: 20px;
             border-radius: 15px;
             margin-bottom: 30px;
@@ -49,12 +87,18 @@
             gap: 20px;
             align-items: center;
             flex-wrap: wrap;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        body.dark-mode .controls {
+            background: #1E2D3D;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
         }
         
         .refresh-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: linear-gradient(135deg, #8B5FBF 0%, #D4578C 100%);
+            color: #F5F0E8;
             border: none;
             padding: 12px 30px;
             border-radius: 25px;
@@ -66,7 +110,7 @@
         
         .refresh-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 20px rgba(139, 95, 191, 0.5);
         }
         
         .refresh-btn:disabled {
@@ -83,16 +127,34 @@
         
         .category-selector label {
             font-weight: 600;
-            color: #333;
+            color: #1E2D3D;
+            transition: color 0.3s ease;
+        }
+        
+        body.dark-mode .category-selector label {
+            color: #F5F0E8;
         }
         
         .category-selector select {
             padding: 10px 15px;
-            border: 2px solid #667eea;
+            border: 2px solid #8B5FBF;
             border-radius: 8px;
             font-size: 1em;
             cursor: pointer;
             background: white;
+            color: #1E2D3D;
+            transition: all 0.3s ease;
+        }
+        
+        body.dark-mode .category-selector select {
+            background: #0a0e14;
+            color: #F5F0E8;
+            border-color: #8B5FBF;
+        }
+        
+        .category-selector select:focus {
+            outline: none;
+            border-color: #D4578C;
         }
         
         .content-grid {
@@ -103,20 +165,31 @@
         }
         
         .content-card {
-            background: white;
+            background: #F5F0E8;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: transform 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: transform 0.3s, background 0.3s ease;
+        }
+        
+        body.dark-mode .content-card {
+            background: #1E2D3D;
         }
         
         .content-card:hover {
             transform: translateY(-5px);
         }
         
+        .quote-card .card-header {
+            background: linear-gradient(135deg, #8B5FBF 0%, #D4578C 100%);
+        }
+        
+        .fact-card .card-header {
+            background: linear-gradient(135deg, #D4578C 0%, #FF9D6F 100%);
+        }
+        
         .card-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            color: #F5F0E8;
             padding: 20px;
             text-align: center;
         }
@@ -140,15 +213,25 @@
         .quote-text {
             font-size: 1.3em;
             font-style: italic;
-            color: #333;
+            color: #1E2D3D;
             margin-bottom: 20px;
             line-height: 1.6;
+            transition: color 0.3s ease;
+        }
+        
+        body.dark-mode .quote-text {
+            color: #F5F0E8;
         }
         
         .quote-author {
             font-size: 1.1em;
-            color: #667eea;
+            color: #8B5FBF;
             font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        body.dark-mode .quote-author {
+            color: #D4578C;
         }
         
         .fact-content {
@@ -157,17 +240,28 @@
         
         .fact-text {
             font-size: 1.2em;
-            color: #333;
+            color: #1E2D3D;
             line-height: 1.6;
+            transition: color 0.3s ease;
+        }
+        
+        body.dark-mode .fact-text {
+            color: #F5F0E8;
         }
         
         .loading-message {
-            color: #999;
+            color: #1E2D3D;
             font-style: italic;
+            opacity: 0.7;
+            transition: color 0.3s ease;
+        }
+        
+        body.dark-mode .loading-message {
+            color: #F5F0E8;
         }
         
         .loading-indicator {
-            background: rgba(255, 255, 255, 0.95);
+            background: #F5F0E8;
             padding: 15px 30px;
             border-radius: 10px;
             text-align: center;
@@ -176,6 +270,8 @@
             right: 20px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
             animation: pulse 1.5s infinite;
+            color: #1E2D3D;
+            font-weight: 600;
         }
         
         @keyframes pulse {
@@ -184,13 +280,13 @@
         }
         
         .error-display {
-            background: #ff6b6b;
-            color: white;
+            background: linear-gradient(135deg, #D4578C 0%, #FF9D6F 100%);
+            color: #F5F0E8;
             padding: 20px;
             border-radius: 10px;
             text-align: center;
             margin-bottom: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
         
         .error-display h3 {
@@ -199,13 +295,18 @@
         
         .error-display button {
             margin-top: 15px;
-            background: white;
-            color: #ff6b6b;
+            background: #F5F0E8;
+            color: #D4578C;
             border: none;
             padding: 10px 20px;
             border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
+            transition: transform 0.2s;
+        }
+        
+        .error-display button:hover {
+            transform: scale(1.05);
         }
         
         .hidden {
@@ -213,16 +314,26 @@
         }
         
         .info-section {
-            background: white;
+            background: #F5F0E8;
             padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: background 0.3s ease;
+        }
+        
+        body.dark-mode .info-section {
+            background: #1E2D3D;
         }
         
         .info-section h3 {
-            color: #333;
+            color: #1E2D3D;
             margin-bottom: 20px;
             text-align: center;
+            transition: color 0.3s ease;
+        }
+        
+        body.dark-mode .info-section h3 {
+            color: #F5F0E8;
         }
         
         .architecture-grid {
@@ -232,15 +343,36 @@
         }
         
         .layer {
-            background: #f8f9fa;
+            background: white;
             padding: 20px;
             border-radius: 10px;
-            border-left: 4px solid #667eea;
+            border-left: 4px solid #8B5FBF;
+            transition: background 0.3s ease;
+        }
+        
+        body.dark-mode .layer {
+            background: #0a0e14;
+        }
+        
+        .layer:nth-child(2) {
+            border-left-color: #D4578C;
+        }
+        
+        .layer:nth-child(3) {
+            border-left-color: #FF9D6F;
         }
         
         .layer h4 {
-            color: #667eea;
+            color: #8B5FBF;
             margin-bottom: 15px;
+        }
+        
+        .layer:nth-child(2) h4 {
+            color: #D4578C;
+        }
+        
+        .layer:nth-child(3) h4 {
+            color: #FF9D6F;
         }
         
         .layer ul {
@@ -249,13 +381,21 @@
         
         .layer li {
             padding: 5px 0;
-            color: #555;
+            color: #1E2D3D;
         }
         
         .layer li:before {
             content: "✓ ";
-            color: #667eea;
+            color: #8B5FBF;
             font-weight: bold;
+        }
+        
+        .layer:nth-child(2) li:before {
+            color: #D4578C;
+        }
+        
+        .layer:nth-child(3) li:before {
+            color: #FF9D6F;
         }
         
         .content-updating {
@@ -265,13 +405,148 @@
         
         .error-content {
             text-align: center;
-            color: #ff6b6b;
+            color: #D4578C;
+        }
+        
+        /* Animated elements */
+        .animated-icon {
+            position: fixed;
+            font-size: 3em;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            z-index: 1000;
+            pointer-events: none;
+        }
+        
+        .bike1 {
+            top: 20%;
+            animation: slideLeft 16s infinite;
+        }
+        
+        .car1 {
+            top: 50%;
+            animation: slideLeft 13s infinite;
+            animation-delay: 4s;
+        }
+        
+        .car2 {
+            top: 75%;
+            animation: slideLeft 18s infinite;
+            animation-delay: 9s;
+        }
+        
+        @keyframes slideLeft {
+            0% {
+                right: -10%;
+                opacity: 0;
+            }
+            5% {
+                opacity: 1;
+            }
+            95% {
+                opacity: 1;
+            }
+            100% {
+                right: 110%;
+                opacity: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+            
+            .controls {
+                flex-direction: column;
+            }
+            
+            .refresh-btn {
+                width: 100%;
+            }
+            
+            .category-selector {
+                width: 100%;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .category-selector select {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Theme Toggle Button -->
+    <button id="themeToggle" class="theme-toggle" title="Toggle dark mode">🌙</button>
+    
+    <!-- Animated icons -->
+    <div class="animated-icon bike1">🚴</div>
+    <div class="animated-icon car1">🏎️</div>
+    <div class="animated-icon car2">🏎️</div>
+    
     <div class="container">
         <header>
+            <svg class="logo" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                <!-- Stack of books -->
+                <!-- Book 5 (bottom) -->
+                <rect x="100" y="320" width="200" height="35" rx="3" fill="#6B4C8A"/>
+                <rect x="105" y="320" width="190" height="35" rx="2" fill="#8B5FBF"/>
+                <rect x="115" y="325" width="50" height="25" fill="#F5F0E8" opacity="0.3"/>
+                <rect x="170" y="325" width="115" height="3" fill="#F5F0E8" opacity="0.3"/>
+                <rect x="170" y="332" width="100" height="3" fill="#F5F0E8" opacity="0.3"/>
+                <rect x="170" y="339" width="90" height="3" fill="#F5F0E8" opacity="0.3"/>
+                <rect x="170" y="346" width="80" height="3" fill="#F5F0E8" opacity="0.3"/>
+                
+                <!-- Book 4 -->
+                <rect x="90" y="280" width="220" height="40" rx="3" fill="#B8446B"/>
+                <rect x="95" y="280" width="210" height="40" rx="2" fill="#D4578C"/>
+                <rect x="105" y="285" width="60" height="30" fill="#F5F0E8" opacity="0.3"/>
+                <rect x="170" y="290" width="125" height="3" fill="#F5F0E8" opacity="0.3"/>
+                <rect x="170" y="297" width="110" height="3" fill="#F5F0E8" opacity="0.3"/>
+                <rect x="170" y="304" width="100" height="3" fill="#F5F0E8" opacity="0.3"/>
+                <rect x="265" y="285" width="3" height="30" fill="#C7476F"/>
+                <rect x="272" y="285" width="3" height="30" fill="#C7476F"/>
+                <!-- Bookmark -->
+                <polygon points="280,280 290,280 285,295" fill="#FF6B6B"/>
+                
+                <!-- Book 3 -->
+                <rect x="95" y="235" width="210" height="45" rx="3" fill="#4A3A6B"/>
+                <rect x="100" y="235" width="200" height="45" rx="2" fill="#5D4A7F"/>
+                <rect x="110" y="242" width="60" height="33" fill="#F5F0E8" opacity="0.3"/>
+                <rect x="175" y="247" width="115" height="3" fill="#F5F0E8" opacity="0.3"/>
+                <rect x="175" y="254" width="100" height="3" fill="#F5F0E8" opacity="0.3"/>
+                <rect x="175" y="261" width="90" height="3" fill="#F5F0E8" opacity="0.3"/>
+                <rect x="175" y="268" width="85" height="3" fill="#F5F0E8" opacity="0.3"/>
+                <rect x="260" y="240" width="3" height="38" fill="#4A3A6B"/>
+                <rect x="267" y="240" width="3" height="38" fill="#4A3A6B"/>
+                
+                <!-- Book 2 (orange) -->
+                <rect x="105" y="190" width="190" height="45" rx="3" fill="#CC7A52"/>
+                <rect x="110" y="190" width="180" height="45" rx="2" fill="#FF9D6F"/>
+                <rect x="120" y="197" width="55" height="33" fill="#8B5FBF" opacity="0.3"/>
+                <rect x="180" y="202" width="100" height="3" fill="#8B5FBF" opacity="0.3"/>
+                <rect x="180" y="209" width="90" height="3" fill="#8B5FBF" opacity="0.3"/>
+                <rect x="180" y="216" width="80" height="3" fill="#8B5FBF" opacity="0.3"/>
+                <rect x="180" y="223" width="75" height="3" fill="#8B5FBF" opacity="0.3"/>
+                <rect x="250" y="195" width="3" height="36" fill="#E88B5F"/>
+                <rect x="257" y="195" width="3" height="36" fill="#E88B5F"/>
+                <!-- Bookmark -->
+                <polygon points="265,190 275,190 270,205" fill="#FF6B6B"/>
+                
+                <!-- Book 1 (top) -->
+                <rect x="120" y="150" width="160" height="40" rx="3" fill="#6B4C8A"/>
+                <rect x="125" y="150" width="150" height="40" rx="2" fill="#8B5FBF"/>
+                <rect x="135" y="157" width="45" height="28" fill="#F5F0E8" opacity="0.3"/>
+                <rect x="185" y="162" width="80" height="3" fill="#F5F0E8" opacity="0.3"/>
+                <rect x="185" y="169" width="70" height="3" fill="#F5F0E8" opacity="0.3"/>
+                <rect x="185" y="176" width="60" height="3" fill="#F5F0E8" opacity="0.3"/>
+                <rect x="240" y="155" width="3" height="30" fill="#6B4C8A"/>
+                <rect x="247" y="155" width="3" height="30" fill="#6B4C8A"/>
+                <!-- Label on spine -->
+                <rect x="245" y="165" width="20" height="15" rx="2" fill="#D4578C"/>
+            </svg>
             <h1>📚 Daily Inspiration & Facts</h1>
             <p class="subtitle">Fuel your mind with wisdom and knowledge</p>
         </header>
@@ -367,7 +642,7 @@
     
     <script>
         // API Configuration - Data Layer
-        const API_KEY = 'ThyHY/6CH6A0b71It7lqew==cSvghfYZaxLrqdDm'; // Replace with your API Ninjas key
+        const API_KEY = 'ThyHY/6CH6A0b71It7lqew==cSvghfYZaxLrqdDm';
         const QUOTES_URL = 'https://api.api-ninjas.com/v1/quotes';
         const FACTS_URL = 'https://api.api-ninjas.com/v1/facts';
 
@@ -380,6 +655,29 @@
         const loadingFact = document.getElementById('loadingFact');
         const errorDisplay = document.getElementById('errorDisplay');
         const errorMessage = document.getElementById('errorMessage');
+        const themeToggle = document.getElementById('themeToggle');
+
+        // Dark mode functionality
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            
+            // Update button icon
+            themeToggle.textContent = isDarkMode ? '☀️' : '🌙';
+            
+            // Save preference
+            localStorage.setItem('darkMode', isDarkMode);
+        }
+
+        // Load saved theme preference
+        const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+        if (savedDarkMode) {
+            document.body.classList.add('dark-mode');
+            themeToggle.textContent = '☀️';
+        }
+
+        // Theme toggle event listener
+        themeToggle.addEventListener('click', toggleDarkMode);
 
         // Processing Layer - API Request Function
         async function makeAPIRequest(url, params = {}) {
